@@ -1,0 +1,59 @@
+﻿@model IEnumerable<EventEase.Models.Event>
+
+@{
+    ViewData["Title"] = "Booking Calendar";
+}
+
+<h1 class="mb-4 text-center">Booking Calendar</h1>
+
+<div class="container">
+
+    @foreach (var group in Model.GroupBy(e => e.EventDate.Date))
+    {
+        <div class="card shadow mb-4">
+
+            <div class="card-header bg-dark text-white">
+                <h4 class="mb-0">
+                    @group.Key.ToString("dddd, dd MMMM yyyy")
+                </h4>
+            </div>
+
+            <div class="card-body">
+
+                @foreach (var item in group)
+                {
+                    <div class="border rounded p-3 mb-3">
+
+                        <h5 class="text-primary">
+                            @item.EventName
+                        </h5>
+
+                        <p class="mb-1">
+                            <strong>Venue:</strong>
+                            @item.Venue?.VenueName
+                        </p>
+
+                        <p class="mb-1">
+                            <strong>Location:</strong>
+                            @item.Venue?.Location
+                        </p>
+
+                        <p class="mb-1">
+                            <strong>Time:</strong>
+                            @item.EventDate.ToString("HH:mm")
+                        </p>
+
+                        <p class="mb-0">
+                            <strong>Description:</strong>
+                            @item.Description
+                        </p>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    }
+
+</div>

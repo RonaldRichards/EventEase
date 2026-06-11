@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Check Venue Availability";
+}
+
+<h1 class="mb-4">Check Venue Availability</h1>
+
+<form method="get">
+
+    <div class="mb-3">
+        <label class="form-label">Venue</label>
+
+        <select name="venueId"
+                class="form-select"
+                asp-items="ViewBag.VenueId">
+
+            <option value="">-- Select Venue --</option>
+
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Date</label>
+
+        <input type="date"
+               name="bookingDate"
+               class="form-control" />
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary">
+        Search Availability
+    </button>
+
+</form>
+
+<hr />
+
+@if (ViewBag.IsBooked != null)
+{
+    if (ViewBag.IsBooked)
+    {
+        <div class="alert alert-danger mt-4">
+            Venue is already booked on @ViewBag.SelectedDate
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-success mt-4">
+            Venue is available on @ViewBag.SelectedDate
+        </div>
+    }
+}

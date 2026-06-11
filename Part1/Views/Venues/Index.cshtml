@@ -1,0 +1,112 @@
+﻿@model IEnumerable<EventEase.Models.Venue>
+
+@{
+    ViewData["Title"] = "Venues";
+}
+
+<h1 class="text-center mb-4">Available Venues</h1>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        + Add New Venue
+    </a>
+</p>
+
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow h-100">
+
+                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                {
+                    <img src="@Url.Content(item.ImageUrl)"
+                         class="card-img-top"
+                         alt="@item.VenueName"
+                         style="height:250px; object-fit:cover;" />
+                }
+                else
+                {
+                    <img src="~/images/no-image.png"
+                         class="card-img-top"
+                         alt="No Image Available"
+                         style="height:250px; object-fit:cover;" />
+                }
+
+                <div class="card-body">
+
+                    <h5 class="card-title">
+                        @item.VenueName
+                    </h5>
+
+                    <p class="card-text">
+                        <strong>Location:</strong> @item.Location
+                    </p>
+
+                    <p class="card-text">
+                        <strong>Capacity:</strong> @item.Capacity
+                    </p>
+
+                    <p class="card-text">
+                        <strong>Availability:</strong>
+
+                        @if (item.IsAvailable)
+                        {
+                            <span class="badge bg-success">
+                                Available
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">
+                                Unavailable
+                            </span>
+                        }
+                    </p>
+
+                </div>
+
+                <div class="card-footer text-center">
+
+                    <a asp-action="Details"
+                       asp-route-id="@item.VenueId"
+                       class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@item.VenueId"
+                       class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@item.VenueId"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>

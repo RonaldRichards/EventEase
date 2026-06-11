@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center mt-5">
+    <h1 class="display-4">Welcome to EventEase</h1>
+
+    <p class="lead mt-4">
+        EventEase is a cloud-based event management system designed to help
+        organisations manage venues, events, and bookings efficiently.
+    </p>
+
+    <hr />
+
+    <div class="mt-4">
+        <a class="btn btn-primary btn-lg me-2" asp-controller="Venues" asp-action="Index">
+            View Venues
+        </a>
+
+        <a class="btn btn-success btn-lg me-2" asp-controller="Events" asp-action="Index">
+            View Events
+        </a>
+
+        <a class="btn btn-dark btn-lg" asp-controller="Bookings" asp-action="Index">
+            View Bookings
+        </a>
+    </div>
+</div>
+
