@@ -1,1 +1,1 @@
-# Part1
+The EventEase project is a cloud-based event and venue management application built with ASP.NET Core MVC, Entity Framework Core, SQL Server, Azure Storage Services, and GitHub deployment. The primary goal of the project was to create and execute a modern event booking platform that enables booking professionals to easily handle venues, events, and bookings while leveraging cloud technology.
